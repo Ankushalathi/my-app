@@ -1,0 +1,2 @@
+# react-typescript-admin-template
+
