@@ -1,0 +1,256 @@
+{
+  "accessData": [
+    {
+      "moduleName": "Seller",
+      "moduleId": "NAV_SELLER",
+      "features": [
+        {
+          "featureId": "SELLER_LIST",
+          "featureName": "See Seller List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "SELLER_VIEW",
+          "featureName": "View Seller",
+          "relatedFieldColumn": "READ_VIEW"
+        },
+        {
+          "featureId": "SELLER_ADD",
+          "featureName": "Add Seller"
+        },
+        {
+          "featureId": "SELLER_UPDATE",
+          "featureName": "Update Seller",
+          "relatedFieldColumn": "UPDATE"
+        },
+        {
+          "featureId": "SELLER_DELETE",
+          "featureName": "Delete Seller"
+        },
+        {
+          "featureId": "SELLER_ACTIVE_DEACTIVE",
+          "featureName": "Activate/Deactivate Seller"
+        }
+      ],
+      "dependencies": [
+        "SELLER_ADD",
+        "SELLER_UPDATE",
+        "SELLER_DELETE",
+        "SELLER_ACTIVE_DEACTIVE",
+        "SELLER_LIST",
+        "SELLER_VIEW"
+      ],
+      "fields": [
+        {
+          "fieldName": "Category Name",
+          "fieldId": {
+            "READ_LIST": "CATEGORY_READ_LIST_CATEGORY_NAME",
+            "READ_VIEW": "CATEGORY_READ_VIEW_CATEGORY_NAME",
+            "UPDATE": "CATEGORY_UPDATE_CATEGORY_NAME"
+          }
+        },
+        {
+          "fieldName": "Image",
+          "fieldId": {
+            "READ_LIST": "Read(List)",
+            "READ_VIEW": "Read(View)",
+            "UPDATE": "Update"
+          }
+        },
+        {
+          "fieldName": "Category Code",
+          "fieldId": {
+            "READ_LIST": "Read(List)",
+            "READ_VIEW": "Read(View)",
+            "UPDATE": "Update"
+          }
+        }
+      ]
+    },
+    {
+      "moduleName": "Admin User",
+      "moduleId": "NAV_ADMIN_USER",
+      "features": [
+        {
+          "featureId": "ADMIN_USER_LIST",
+          "featureName": "See Admin User List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "ADMIN_USER_ADD",
+          "featureName": "Add Admin User"
+        },
+        {
+          "featureId": "ADMIN_USER_UPDATE",
+          "featureName": "Update Admin User",
+          "relatedFieldColumn": "UPDATE"
+        },
+        {
+          "featureId": "ADMIN_USER_ACTIVE_DEACTIVE",
+          "featureName": "Activate/Deactivate Admin User"
+        }
+      ],
+      "dependencies": [
+        "ADMIN_USER_ADD",
+        "ADMIN_USER_UPDATE",
+        "ADMIN_USER_DELETE",
+        "ADMIN_USER_ACTIVE_DEACTIVE",
+        "ADMIN_USER_LIST"
+      ]
+    },
+    {
+      "moduleName": "Admin Role",
+      "moduleId": "NAV_ADMIN_ROLE",
+      "features": [
+        {
+          "featureId": "ADMIN_ROLE_LIST",
+          "featureName": "See Admin Role List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "ADMIN_ROLE_ADD",
+          "featureName": "Add Admin Role"
+        },
+        {
+          "featureId": "ADMIN_ROLE_UPDATE",
+          "featureName": "Update Admin Role",
+          "relatedFieldColumn": "UPDATE"
+        }
+      ],
+      "dependencies": [
+        "ADMIN_ROLE_ADD",
+        "ADMIN_ROLE_UPDATE",
+        "ADMIN_ROLE_DELETE",
+        "ADMIN_ROLE_LIST"
+      ]
+    },
+    {
+      "moduleName": "Category",
+      "moduleId": "NAV_CATEGORY",
+      "features": [
+        {
+          "featureId": "CATEGORY_LIST",
+          "featureName": "See Category List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "CATEGORY_ADD",
+          "featureName": "Add Category"
+        },
+        {
+          "featureId": "CATEGORY_UPDATE",
+          "featureName": "Update Category",
+          "relatedFieldColumn": "UPDATE"
+        },
+        {
+          "featureId": "CATEGORY_DELETE",
+          "featureName": "Delete Category"
+        },
+        {
+          "featureId": "CATEGORY_ACTIVE_DEACTIVE",
+          "featureName": "Activate/Deactivate Category"
+        }
+      ],
+      "dependencies": [
+        "CATEGORY_ADD",
+        "CATEGORY_UPDATE",
+        "CATEGORY_DELETE",
+        "CATEGORY_ACTIVE_DEACTIVE",
+        "CATEGORY_LIST"
+      ]
+    },
+    {
+      "moduleName": "Sub-Category",
+      "moduleId": "NAV_SUB_CATEGORY",
+      "features": [
+        {
+          "featureId": "SUB_CATEGORY_LIST",
+          "featureName": "See Sub-Category List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "SUB_CATEGORY_ADD",
+          "featureName": "Add Sub-Category"
+        },
+        {
+          "featureId": "SUB_CATEGORY_UPDATE",
+          "featureName": "Update Sub-Category",
+          "relatedFieldColumn": "UPDATE"
+        },
+        {
+          "featureId": "SUB_CATEGORY_DELETE",
+          "featureName": "Delete Sub-Category"
+        },
+        {
+          "featureId": "SUB_CATEGORY_ACTIVE_DEACTIVE",
+          "featureName": "Activate/Deactivate Sub-Category"
+        }
+      ],
+      "dependencies": [
+        "SUB_CATEGORY_ADD",
+        "SUB_CATEGORY_UPDATE",
+        "SUB_CATEGORY_DELETE",
+        "SUB_CATEGORY_ACTIVE_DEACTIVE",
+        "SUB_CATEGORY_LIST"
+      ]
+    },
+    {
+      "moduleName": "Product",
+      "moduleId": "NAV_PRODUCT",
+      "features": [
+        {
+          "featureId": "PRODUCT_LIST",
+          "featureName": "See Product List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "PRODUCT_VIEW",
+          "featureName": "View Product",
+          "relatedFieldColumn": "READ_VIEW"
+        },
+        {
+          "featureId": "PRODUCT_ADD",
+          "featureName": "Add Product"
+        },
+        {
+          "featureId": "PRODUCT_UPDATE",
+          "featureName": "Update Product",
+          "relatedFieldColumn": "UPDATE"
+        },
+        {
+          "featureId": "PRODUCT_ACTIVE_DEACTIVE",
+          "featureName": "Activate/Deactivate Product"
+        }
+      ],
+      "dependencies": [
+        "PRODUCT_ADD",
+        "PRODUCT_UPDATE",
+        "PRODUCT_DELETE",
+        "PRODUCT_ACTIVE_DEACTIVE",
+        "PRODUCT_LIST",
+        "PRODUCT_VIEW"
+      ]
+    },
+    {
+      "moduleName": "Location",
+      "moduleId": "NAV_LOCATION",
+      "features": [
+        {
+          "featureId": "LOCATION_LIST",
+          "featureName": "See Location List",
+          "relatedFieldColumn": "READ_LIST"
+        },
+        {
+          "featureId": "LOCATION_ADD",
+          "featureName": "Add Location"
+        },
+        {
+          "featureId": "LOCATION_UPDATE",
+          "featureName": "Update Location",
+          "relatedFieldColumn": "UPDATE"
+        }
+      ],
+      "dependencies": ["LOCATION_ADD", "LOCATION_UPDATE", "LOCATION_LIST"]
+    }
+  ]
+}
