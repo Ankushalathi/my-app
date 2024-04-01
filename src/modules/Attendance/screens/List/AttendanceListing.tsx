@@ -46,14 +46,14 @@ const AttendanceListing = ({
             </p>
           </div>
           <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-orange-600">On Time </p>
-            <p className="text-lg font-bold text-center text-orange-400">
+            <p className="font-bold text-lime-600">On Time </p>
+            <p className="text-lg font-bold text-center text-lime-500 ">
               {onTime}
             </p>
           </div>
           <div className="flex flex-col gap-3 text-slate-600">
-            <p className="font-bold">Late </p>
-            <p className="text-lg font-bold text-center">{late}</p>
+            <p className="font-bold text-orange-600">Late </p>
+            <p className="text-lg font-bold text-center text-orange-400">{late}</p>
           </div>
         </div>
         <div className="flex justify-between w-screen">
