@@ -14,11 +14,7 @@ const PageRoutes = (props: Props) => {
     },
     {
       path: "/",
-      element: (
-        <AuthWrapper>
-          <SideNavLayout />
-        </AuthWrapper>
-      ),
+      element: <SideNavLayout />,
       errorElement: <ErrorPage />,
     },
   ]);
