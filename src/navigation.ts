@@ -55,6 +55,11 @@ const navigation: (params?: {
           path: "",
         },
         {
+          title: "BatchStudent",
+          icon: IconBasket,
+          path: " batch-student",
+        },
+        {
           title: "Seller",
           icon: IconUsers,
           path: "seller",
@@ -87,7 +92,7 @@ const navigation: (params?: {
         {
 
 
-          
+
           title: "Locations",
           icon: IconCurrentLocation,
           path: "locations",
@@ -148,8 +153,8 @@ const navigation: (params?: {
           title: "Inventory",
           icon: IconBasket,
           path: "inventory",
-          permission :'NAV_INVENTORY'
-        },
+          permission: 'NAV_INVENTORY'
+        }
       ],
     },
   ];
