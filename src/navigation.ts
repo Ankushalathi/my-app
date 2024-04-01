@@ -55,6 +55,16 @@ const navigation: (params?: {
           path: "",
         },
         {
+          title: "Batch",
+          icon: IconTarget,
+          path: "batch",
+        },
+        {
+          title: "Attendance",
+          icon: IconTarget,
+          path: "attendance",
+        },
+        {
           title: "Seller",
           icon: IconUsers,
           path: "seller",
@@ -92,11 +102,6 @@ const navigation: (params?: {
           icon: IconCurrentLocation,
           path: "locations",
           permission: "NAV_LOCATION",
-        },
-        {
-          title: "Orders",
-          icon: IconTarget,
-          path: "order",
         },
       ],
     },
