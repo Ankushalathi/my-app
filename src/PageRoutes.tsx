@@ -2,8 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import SideNavLayout from "./components/layouts/SideNavLayout/SideNavLayout";
 import LoginFormWrapper from "./modules/Login/LoginFormWrapper";
-import BathcListingWrapper from "./modules/Batch/screens/BathcListingWrapper";
 import AuthWrapper from "./components/AuthWrapper/AuthWrapper";
+import BatchStudentListingWrapper from "./modules/BatchStudent/screens/List/BatchStudentListingWrapper";
+import BathcListingWrapper from "./modules/Batch/screens/BathcListingWrapper";
 import AttendanceListingWrapper from "./modules/Attendance/screens/List/AttendanceListingWrapper";
 
 type Props = {};
@@ -15,13 +16,24 @@ const PageRoutes = (props: Props) => {
       element: <LoginFormWrapper />,
     },
     {
+      element: <SideNavLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "batch-student",
+          element: <BatchStudentListingWrapper />,
+        },
+      ],
+    },
+
+    {
       element: (
         <AuthWrapper>
           <SideNavLayout />
         </AuthWrapper>
       ),
       errorElement: <ErrorPage />,
-      children:[
+      children: [
         {
           path: "/batch",
           element: <BathcListingWrapper />,
@@ -30,13 +42,17 @@ const PageRoutes = (props: Props) => {
           path: "/attendance",
           element: <AttendanceListingWrapper />,
         },
-      ]
+      ],
     },
-    
+
     {
       path: "/",
       element: <SideNavLayout />,
       errorElement: <ErrorPage />,
+    },
+    {
+      path: "batch-student",
+      element: <BatchStudentListingWrapper />,
     },
     {
       path: "/batch",
