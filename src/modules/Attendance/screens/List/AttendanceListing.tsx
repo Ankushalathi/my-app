@@ -23,6 +23,7 @@ const AttendanceListing = ({
   date,
   late,
 }: Props) => {
+  
   const { values, setFieldValue, handleSubmit } = formikProps;
 
   return (
@@ -34,25 +35,25 @@ const AttendanceListing = ({
             <p className="text-lg font-bold text-center">{totalStudents}</p>
           </div>
           <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-green-600">Present </p>
+            <p className="font-bold text-green-700">Present </p>
             <p className="text-lg font-bold text-center text-green-500">
               {present}
             </p>
           </div>
           <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-red-600">Absent </p>
+            <p className="font-bold text-red-700">Absent </p>
             <p className="text-lg font-bold text-center text-red-400">
               {absent}
             </p>
           </div>
           <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-lime-600">On Time </p>
+            <p className="font-bold text-lime-700">On Time </p>
             <p className="text-lg font-bold text-center text-lime-500 ">
               {onTime}
             </p>
           </div>
           <div className="flex flex-col gap-3 text-slate-600">
-            <p className="font-bold text-orange-600">Late </p>
+            <p className="font-bold text-orange-700">Late </p>
             <p className="text-lg font-bold text-center text-orange-400">{late}</p>
           </div>
         </div>
