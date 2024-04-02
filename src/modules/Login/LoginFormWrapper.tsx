@@ -20,7 +20,7 @@ import { useLoginMutation } from "../../services/AuthServices";
 import { showToast } from "../../utils/showToaster";
 
 export type LoginFormInitialValues = {
-  userName: string;
+  email: string;
   password: string;
 };
 
@@ -55,12 +55,14 @@ const LoginFormWrapper = () => {
   const [login] = useLoginMutation();
 
   const initialValues: LoginFormInitialValues = {
-    userName: "",
+    email: "",
     password: "",
   };
 
   const validationSchema = object({
-    userName: string().required("Please enter user name"),
+    email: string()
+      .email("Please enter valid email")
+      .required("Please enter email"),
     password: string().required("Password is required"),
   });
 
@@ -76,6 +78,7 @@ const LoginFormWrapper = () => {
         showToast("error", res?.error?.data?.message);
       } else {
         if (res?.data?.status) {
+          navigate("/dashboard")
           afterLogin(res?.data?.data);
           showToast("success", res?.data?.message);
         } else {

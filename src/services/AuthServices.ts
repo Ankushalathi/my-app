@@ -7,9 +7,9 @@ export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // Login
     login: builder.mutation({
-      query: (body: { userName: string; password: string }) => {
+      query: (body: { email: string; password: string }) => {
         return {
-          url: "/admin/login",
+          url: "/trainer/login",
           method: "POST",
           headers: {
             "device-id": deviceId,
