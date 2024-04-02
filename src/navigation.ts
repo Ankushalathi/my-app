@@ -42,7 +42,7 @@ const navigation: (params?: {
         {
           title: "Dashboard",
           icon: IconHome,
-          path: "",
+          path: "/dashboard",
         },
         {
           title: "Batch",

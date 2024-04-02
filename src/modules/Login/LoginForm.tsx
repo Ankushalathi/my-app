@@ -25,15 +25,15 @@ const LoginForm = ({ formikProps }: Props) => {
               {/* User Name */}
               <div className="">
                 <ATMTextField
-                  name="userName"
-                  value={values.userName}
-                  onChange={(e) => setFieldValue("userName", e.target.value)}
-                  label="User Name"
-                  placeholder="Enter User Name"
+                  name="email"
+                  value={values.email}
+                  onChange={(e) => setFieldValue("email", e.target.value)}
+                  label="Email"
+                  placeholder="Enter Email"
                   onBlur={handleBlur}
-                  isTouched={touched?.userName}
-                  errorMessage={errors?.userName}
-                  isValid={!errors?.userName}
+                  isTouched={touched?.email}
+                  errorMessage={errors?.email}
+                  isValid={!errors?.email}
                 />
               </div>
 
@@ -43,6 +43,7 @@ const LoginForm = ({ formikProps }: Props) => {
                   name="password"
                   value={values.password}
                   onChange={(e) => setFieldValue("password", e.target.value)}
+                  placeholder="Enter Password"
                   label="Password"
                   onBlur={handleBlur}
                   isTouched={touched?.password}

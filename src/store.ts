@@ -9,6 +9,7 @@ import BatchSlice from "./modules/Batch/slice/BatchSlice";
 
 import BatchStudentSlice from "./modules/BatchStudent/slice/BatchStudentSlice";
 import AttendanceSlice from "./modules/Attendance/slice/AttendanceSlice";
+import BatchAssignmentSlice from "./modules/BatchAssignment/slice/BatchAssignmentSlice";
 // Import New Slice Above
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
     batchstudent: BatchStudentSlice,
     batch:BatchSlice,
     attendance: AttendanceSlice,
+    batchassignment: BatchAssignmentSlice,
     // Add More Slice Above
 
     [apiSlice.reducerPath]: apiSlice.reducer,
