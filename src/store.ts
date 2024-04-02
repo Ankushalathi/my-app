@@ -6,12 +6,14 @@ import { fileExplorerSlice } from "./services/FileExplorer";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
+import BatchStudentSlice from "./modules/BatchStudent/slice/BatchStudentSlice";
 // Import New Slice Above
 
 const store = configureStore({
   reducer: {
     auth: AuthSlice,
     sideNavLayout: SideNavLayoutSlice,
+    batchstudent: BatchStudentSlice,
     // Add More Slice Above
 
     [apiSlice.reducerPath]: apiSlice.reducer,
