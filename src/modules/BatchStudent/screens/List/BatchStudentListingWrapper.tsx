@@ -1,13 +1,12 @@
-
 import React from "react";
 import BatchStudentListing from "./BatchStudentListing";
 import { BatchStudent } from "../../models/BatchStudent.model";
-import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenAddDialog } from "../../slice/BatchStudentSlice";
 import AddBatchStudentFormWrapper from "../Add/AddBatchStudentFormWrapper";
 import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable";
 import { AppDispatch, RootState } from "../../../../store";
-import { formatedDateTimeIntoIst } from "../../utils/dateTimeFormate";
+import { formatedDateTimeIntoIst } from "../../../../utils/dateTimeFormat";
+import { useSelector, useDispatch } from "react-redux";
 
 type Props = {};
 
@@ -18,7 +17,6 @@ const listData: BatchStudent[] = [
     mobileNumber: 888964793,
     email: "Himanshu@gmail.com",
     _id: "1",
-
   },
   {
     dateTime: "10 Apr 2024",
@@ -47,7 +45,7 @@ const listData: BatchStudent[] = [
     mobileNumber: 888964793,
     email: "Deepak@gmail.com",
     _id: "1",
-  }
+  },
 ];
 
 const tableHeaders: TableHeader<BatchStudent>[] = [
@@ -56,16 +54,16 @@ const tableHeaders: TableHeader<BatchStudent>[] = [
     headerName: "Date-Time",
     highlight: true,
     flex: "flex-[1_1_0%]",
-    renderCell: (row) => (<div>
-      <div className="font-medium text-slate-700">
-        {formatedDateTimeIntoIst(row.dateTime, "DD MMM yyyy")}
+    renderCell: (row) => (
+      <div>
+        <div className="font-medium text-slate-700">
+          {formatedDateTimeIntoIst(row.dateTime, "DD MMM yyyy")}
+        </div>
+        <div className="text-[13px] font-medium text-slate-400">
+          {formatedDateTimeIntoIst(row.dateTime, "hh:mm A")}
+        </div>
       </div>
-      <div className="text-[13px] font-medium text-slate-400">
-        {formatedDateTimeIntoIst(row.dateTime, "hh:mm A")}
-      </div>
-    </div>)
-
-
+    ),
   },
   {
     fieldName: "name",
@@ -82,11 +80,13 @@ const tableHeaders: TableHeader<BatchStudent>[] = [
     headerName: "Email",
     extraClasses: () => "min-w-[100px]",
     flex: "flex-[1_0_0%]",
-  }
+  },
 ];
 
 const BatchStudentListingWrapper = (props: Props) => {
-  const { isOpenAddDialog } = useSelector((state: RootState) => state?.batchstudent);
+  const { isOpenAddDialog } = useSelector(
+    (state: RootState) => state?.batchstudent
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -110,4 +110,3 @@ const BatchStudentListingWrapper = (props: Props) => {
 };
 
 export default BatchStudentListingWrapper;
-

@@ -25,7 +25,7 @@ const PageRoutes = (props: Props) => {
           path: "batch-student",
           element: <BatchStudentListingWrapper />,
         },
-      ]
+      ],
     },
 
     {
