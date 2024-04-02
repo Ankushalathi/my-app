@@ -7,7 +7,6 @@ import MOLTable, {
 import { Batch } from "../models/Batch.model";
 
 type Props = {
-  onAddNew: () => void;
   rowData: Batch[];
   tableHeaders: TableHeader<Batch>[];
   filterPaginationData: {
@@ -17,7 +16,6 @@ type Props = {
 };
 
 const BatchListing = ({
-  onAddNew,
   tableHeaders,
   rowData,
   filterPaginationData: { totalCount, totalPages },

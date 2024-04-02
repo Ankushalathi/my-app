@@ -1,11 +1,6 @@
-import React from "react";
-import BatchListing from "./BatchListing";
-import { Batch } from "../models/Batch.model";
 import { TableHeader } from "../../../components/molecules/MOLTable/MOLTable";
-import AddBatchFormWrapper from "./Add/AddBatchFormWrapper";
-import { setIsOpenAddDialog } from "../slice/BatchSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store";
+import { Batch } from "../models/Batch.model";
+import BatchListing from "./BatchListing";
 
 type Props = {};
 const listData: Batch[] = [
@@ -83,13 +78,9 @@ const tableHeaders: TableHeader<Batch>[] = [
 ];
 
 const BathcListingWrapper = (props: Props) => {
-  const { isOpenAddDialog} = useSelector((state: RootState) => state?.batch);
-  const dispatch = useDispatch<AppDispatch>();
-
   return (
     <>
       <BatchListing
-        onAddNew={() => dispatch(setIsOpenAddDialog(true))}
         tableHeaders={tableHeaders}
         rowData={listData}
         filterPaginationData={{
@@ -97,11 +88,6 @@ const BathcListingWrapper = (props: Props) => {
           totalPages: 5,
         }}
       />
-      {isOpenAddDialog && (
-        <AddBatchFormWrapper
-          onClose={() => dispatch(setIsOpenAddDialog(false))}
-        />
-      )}
     </>
   );
 };
