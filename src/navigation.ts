@@ -45,11 +45,6 @@ const navigation: (params?: {
           path: "/dashboard",
         },
         {
-          title: "BatchAssignment",
-          icon: IconHome,
-          path: "assignment",
-        },
-        {
           title: "Batch",
           icon: IconTarget,
           path: "batch",
