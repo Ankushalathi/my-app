@@ -1,14 +1,4 @@
-import {
-  Icon,
-  IconBasket,
-  IconCategory,
-  IconCategory2,
-  IconCurrentLocation,
-  IconHome,
-  IconTarget,
-  IconUser,
-  IconUsers,
-} from "@tabler/icons-react";
+import { Icon, IconHome, IconTarget } from "@tabler/icons-react";
 import { PermissionType } from "./utils/authorization";
 import { getPermittedNavigations } from "./utils/getPermittedNavigations";
 
@@ -60,100 +50,9 @@ const navigation: (params?: {
           path: "assignment",
         },
         {
-          title: "Seller",
-          icon: IconUsers,
-          path: "seller",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-          permission: "NAV_SELLER",
-        },
-        {
-          title: "Admin User",
-          icon: IconUser,
-          path: "admin-user",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-          permission: "NAV_ADMIN_USER",
-        },
-        {
-          title: "Admin Role",
-          icon: IconUser,
-          path: "admin-role",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-          permission: "NAV_ADMIN_ROLE",
-        },
-        {
-
-
-
-          title: "Locations",
-          icon: IconCurrentLocation,
-          path: "locations",
-          permission: "NAV_LOCATION",
-        },
-        {
-          title: "Orders",
+          title: "Batch",
           icon: IconTarget,
-          path: "order",
-        },
-      ],
-    },
-
-    {
-      groupLable: "Inventory",
-      permissions: ["NAV_CATEGORY", "NAV_SUB_CATEGORY", "NAV_PRODUCT"],
-      items: [
-        {
-          title: "Category",
-          icon: IconCategory,
-          path: "category",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-          permission: "NAV_CATEGORY",
-        },
-        {
-          title: "Sub Category",
-          icon: IconCategory2,
-          path: "sub-category",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-          permission: "NAV_SUB_CATEGORY",
-        },
-        {
-          title: "Products",
-          icon: IconBasket,
-          path: "products",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-          permission: "NAV_PRODUCT",
-        },
-        {
-          title: "Units",
-          icon: IconBasket,
-          path: "unit",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-        },
-        {
-          title: "Inventory",
-          icon: IconBasket,
-          path: "inventory",
-          permission: 'NAV_INVENTORY'
+          path: "batch",
         },
       ],
     },

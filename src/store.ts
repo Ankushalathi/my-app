@@ -5,7 +5,10 @@ import apiSlice from "./services/ApiSlice";
 import { fileExplorerSlice } from "./services/FileExplorer";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import BatchSlice from "./modules/Batch/slice/BatchSlice";
 
+import BatchStudentSlice from "./modules/BatchStudent/slice/BatchStudentSlice";
+import AttendanceSlice from "./modules/Attendance/slice/AttendanceSlice";
 import BatchAssignmentSlice from "./modules/BatchAssignment/slice/BatchAssignmentSlice";
 // Import New Slice Above
 
@@ -13,6 +16,9 @@ const store = configureStore({
   reducer: {
     auth: AuthSlice,
     sideNavLayout: SideNavLayoutSlice,
+    batchstudent: BatchStudentSlice,
+    batch:BatchSlice,
+    attendance: AttendanceSlice,
     batchassignment: BatchAssignmentSlice,
     // Add More Slice Above
 
