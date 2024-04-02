@@ -4,6 +4,8 @@ import SideNavLayout from "./components/layouts/SideNavLayout/SideNavLayout";
 import LoginFormWrapper from "./modules/Login/LoginFormWrapper";
 import AuthWrapper from "./components/AuthWrapper/AuthWrapper";
 import BatchStudentListingWrapper from "./modules/BatchStudent/screens/List/BatchStudentListingWrapper";
+import BathcListingWrapper from "./modules/Batch/screens/BathcListingWrapper";
+import AttendanceListingWrapper from "./modules/Attendance/screens/List/AttendanceListingWrapper";
 
 type Props = {};
 
@@ -14,6 +16,17 @@ const PageRoutes = (props: Props) => {
       element: <LoginFormWrapper />,
     },
     {
+      element: <SideNavLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "batch-student",
+          element: <BatchStudentListingWrapper />,
+        },
+      ],
+    },
+
+    {
       element: (
         <AuthWrapper>
           <SideNavLayout />
@@ -22,8 +35,12 @@ const PageRoutes = (props: Props) => {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "batch-student",
-          element: <BatchStudentListingWrapper />,
+          path: "/batch",
+          element: <BathcListingWrapper />,
+        },
+        {
+          path: "/attendance",
+          element: <AttendanceListingWrapper />,
         },
       ],
     },
@@ -36,6 +53,10 @@ const PageRoutes = (props: Props) => {
     {
       path: "batch-student",
       element: <BatchStudentListingWrapper />,
+    },
+    {
+      path: "/batch",
+      element: <BathcListingWrapper />,
     },
   ]);
 

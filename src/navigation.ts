@@ -1,4 +1,4 @@
-import { Icon, IconBasket, IconHome } from "@tabler/icons-react";
+import { Icon, IconHome, IconTarget } from "@tabler/icons-react";
 import { PermissionType } from "./utils/authorization";
 import { getPermittedNavigations } from "./utils/getPermittedNavigations";
 
@@ -45,9 +45,9 @@ const navigation: (params?: {
           path: "",
         },
         {
-          title: "BatchStudent",
-          icon: IconBasket,
-          path: "batch-student",
+          title: "Batch",
+          icon: IconTarget,
+          path: "batch",
         },
       ],
     },
