@@ -74,7 +74,7 @@ const ATMMenu = ({ items, children }: MenuProps) => {
   return (
     <>
       <button
-        className={`flex gap-2 px-4 rounded-md  w-fit bg-secondary-container hover:bg-secondary-90 items-center cursor-pointer text-secondary-onContainer hover:text-secondary-30 transition-all duration-300 text-sm font-semibold focus:outline-none h-[30px]`}
+        className={`flex gap-2 px-4 rounded-md  w-fit  hover:bg-secondary-90 items-center cursor-pointer text-secondary-onContainer hover:text-secondary-30 transition-all duration-300 text-sm font-semibold focus:outline-none h-[30px]`}
         onClick={togglePortal}
         onKeyDown={handleKeyDown}
       >

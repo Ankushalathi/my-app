@@ -48,7 +48,7 @@ const navigation: (params?: {
           title: "Batch",
           icon: IconTarget,
           path: "batch",
-        },
+        }
       ],
     },
   ];

@@ -1,5 +1,6 @@
-import { TableHeader } from "../../../components/molecules/MOLTable/MOLTable";
-import { Batch } from "../models/Batch.model";
+import { useNavigate } from "react-router-dom";
+import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable";
+import { Batch } from "../../models/Batch.model";
 import BatchListing from "./BatchListing";
 
 type Props = {};
@@ -41,19 +42,16 @@ const tableHeaders: TableHeader<Batch>[] = [
     fieldName: "batchName",
     headerName: "Batch name",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "course",
     headerName: "course",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "mode",
     headerName: "mode",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "startFrom",
@@ -78,6 +76,7 @@ const tableHeaders: TableHeader<Batch>[] = [
 ];
 
 const BathcListingWrapper = (props: Props) => {
+  const navigate = useNavigate()
   return (
     <>
       <BatchListing
@@ -86,7 +85,8 @@ const BathcListingWrapper = (props: Props) => {
         filterPaginationData={{
           totalCount: 100,
           totalPages: 5,
-        }}
+
+        }} onRowClick={(row) => navigate(`/batch/view/${row?._id}`)}
       />
     </>
   );
