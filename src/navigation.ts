@@ -48,7 +48,11 @@ const navigation: (params?: {
           title: "Batch",
           icon: IconTarget,
           path: "batch",
-        }
+          searchParams: {
+            limit: "10",
+            page: "1",
+          },
+        },
       ],
     },
   ];
