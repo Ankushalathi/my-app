@@ -1,10 +1,10 @@
-import ATMPageHeader from "../../../components/atoms/ATMPageHeader/ATMPageHeader";
-import ATMPagination from "../../../components/atoms/ATMPagination/ATMPagination";
-import MOLFilterBar from "../../../components/molecules/MOLFilterBar/MOLFilterBar";
+import ATMPageHeader from "../../../../components/atoms/ATMPageHeader/ATMPageHeader";
+import ATMPagination from "../../../../components/atoms/ATMPagination/ATMPagination";
+import MOLFilterBar from "../../../../components/molecules/MOLFilterBar/MOLFilterBar";
 import MOLTable, {
   TableHeader,
-} from "../../../components/molecules/MOLTable/MOLTable";
-import { Batch } from "../models/Batch.model";
+} from "../../../../components/molecules/MOLTable/MOLTable";
+import { Batch } from "../../models/Batch.model";
 
 type Props = {
   rowData: Batch[];
@@ -13,6 +13,7 @@ type Props = {
     totalCount: number;
     totalPages: number;
   };
+  onRowClick: (row: Batch) => void;
   isTableLoading: boolean;
 };
 
@@ -20,6 +21,7 @@ const BatchListing = ({
   tableHeaders,
   rowData,
   filterPaginationData: { totalCount, totalPages },
+  onRowClick,
   isTableLoading = true,
 }: Props) => {
   return (
@@ -35,6 +37,7 @@ const BatchListing = ({
               tableHeaders={tableHeaders}
               data={rowData}
               getKey={(item) => item?._id}
+              onRowClick={onRowClick}
               isLoading={isTableLoading}
             />
           </div>

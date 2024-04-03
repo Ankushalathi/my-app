@@ -1,10 +1,11 @@
-import { TableHeader } from "../../../components/molecules/MOLTable/MOLTable";
-import { useFetchData } from "../../../hooks/useFetchData";
-import { useFilterPagination } from "../../../hooks/useFilterPagination";
-import { formatedDateTimeIntoIst } from "../../../utils/dateTimeFormat";
-import { Batch } from "../models/Batch.model";
-import { useGetAllBatchesQuery } from "../services/BatchServices";
+import { useNavigate } from "react-router-dom";
 import BatchListing from "./BatchListing";
+import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable";
+import { Batch } from "../../models/Batch.model";
+import { formatedDateTimeIntoIst } from "../../../../utils/dateTimeFormat";
+import { useFilterPagination } from "../../../../hooks/useFilterPagination";
+import { useFetchData } from "../../../../hooks/useFetchData";
+import { useGetAllBatchesQuery } from "../../services/BatchServices";
 
 type Props = {};
 
@@ -13,25 +14,23 @@ const tableHeaders: TableHeader<Batch>[] = [
     fieldName: "batchName",
     headerName: "Batch name",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "courseName",
     headerName: "course",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "modeName",
     headerName: "mode",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "startDate",
     headerName: "start from",
     flex: "flex-[1_1_0%]",
-    renderCell: (row) => formatedDateTimeIntoIst(row?.startDate || "" , 'DD MMM yyyy'),
+    renderCell: (row) =>
+      formatedDateTimeIntoIst(row?.startDate || "", "DD MMM yyyy"),
   },
   {
     fieldName: "time",
@@ -51,6 +50,7 @@ const tableHeaders: TableHeader<Batch>[] = [
 ];
 
 const BathcListingWrapper = (props: Props) => {
+  const navigate = useNavigate();
   const { searchQuery, page, limit } = useFilterPagination();
   const { data, isLoading, totalPages, totalData } = useFetchData(
     useGetAllBatchesQuery,
@@ -76,8 +76,9 @@ const BathcListingWrapper = (props: Props) => {
         rowData={data}
         filterPaginationData={{
           totalCount: totalData,
-          totalPages,
+          totalPages: totalPages,
         }}
+        onRowClick={(row) => navigate(`/batch/view/${row?._id}`)}
         isTableLoading={isLoading}
       />
     </>

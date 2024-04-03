@@ -36,7 +36,7 @@ const ATMFileUploader = ({
       setFileUrl(URL.createObjectURL(event.target?.files?.[0]));
       setIsFileUploading(true);
       let formData = new FormData();
-      formData.append("bucketName", "SACHCHA-BHAV-ADMIN");
+      formData.append("bucketName", "GEEKSDOOR_TEACHER_PANEL");
       formData.append("file", event.target?.files?.[0]);
 
       uploadFile(formData).then((res: any) => {

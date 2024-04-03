@@ -26,7 +26,7 @@ const BatchAssignmentListing = ({
     <>
       <div className="flex flex-col h-full gap-2">
         <ATMPageHeader
-          heading="BatchAssignments"
+          heading="Assignments"
           buttonProps={{
             label: "Add New",
             icon: IconPlus,
