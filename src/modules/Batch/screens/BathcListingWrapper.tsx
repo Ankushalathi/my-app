@@ -1,40 +1,12 @@
 import { TableHeader } from "../../../components/molecules/MOLTable/MOLTable";
+import { useFetchData } from "../../../hooks/useFetchData";
+import { useFilterPagination } from "../../../hooks/useFilterPagination";
+import { formatedDateTimeIntoIst } from "../../../utils/dateTimeFormat";
 import { Batch } from "../models/Batch.model";
+import { useGetAllBatchesQuery } from "../services/BatchServices";
 import BatchListing from "./BatchListing";
 
 type Props = {};
-const listData: Batch[] = [
-  {
-    batchName: "MERN-MAR-24",
-    course: "Full Stack Web Development-MERN",
-    mode: "Online",
-    startFrom: "2024-04-15",
-    timings: "6:00 PM - 8:00 PM",
-    language: "English",
-    seats: "20",
-    _id: "1",
-  },
-  {
-    batchName: "MERN-MAR-23",
-    course: "Full Stack Web Development-MERN",
-    mode: "Offline",
-    startFrom: "2024-05-01",
-    timings: "10:00 AM - 12:00 PM",
-    language: "English",
-    seats: "15",
-    _id: "2",
-  },
-  {
-    batchName: "MERN-JUNE-24",
-    course: "Full Stack Web Development-MERN",
-    mode: "Classroom",
-    startFrom: "2024-04-20",
-    timings: "7:00 PM - 9:00 PM",
-    language: "English",
-    seats: "25",
-    _id: "3",
-  },
-];
 
 const tableHeaders: TableHeader<Batch>[] = [
   {
@@ -44,24 +16,25 @@ const tableHeaders: TableHeader<Batch>[] = [
     stopPropagation: true,
   },
   {
-    fieldName: "course",
+    fieldName: "courseName",
     headerName: "course",
     flex: "flex-[1_1_0%]",
     stopPropagation: true,
   },
   {
-    fieldName: "mode",
+    fieldName: "modeName",
     headerName: "mode",
     flex: "flex-[1_1_0%]",
     stopPropagation: true,
   },
   {
-    fieldName: "startFrom",
+    fieldName: "startDate",
     headerName: "start from",
     flex: "flex-[1_1_0%]",
+    renderCell: (row) => formatedDateTimeIntoIst(row?.startDate || "" , 'DD MMM yyyy'),
   },
   {
-    fieldName: "timings",
+    fieldName: "time",
     headerName: "timings",
     flex: "flex-[1_0_0%]",
   },
@@ -71,22 +44,41 @@ const tableHeaders: TableHeader<Batch>[] = [
     flex: "flex-[1_1_0%]",
   },
   {
-    fieldName: "seats",
+    fieldName: "noOfSeats",
     headerName: "seats",
     flex: "flex-[1_1_0%]",
   },
 ];
 
 const BathcListingWrapper = (props: Props) => {
+  const { searchQuery, page, limit } = useFilterPagination();
+  const { data, isLoading, totalPages, totalData } = useFetchData(
+    useGetAllBatchesQuery,
+    {
+      body: {
+        limit: limit,
+        searchValue: searchQuery,
+        params: ["trainers"],
+        page: page,
+        filterBy: [],
+        dateFilter: {},
+        orderBy: "createdAt",
+        orderByValue: -1,
+        isPaginationRequired: true,
+      },
+    }
+  );
+
   return (
     <>
       <BatchListing
         tableHeaders={tableHeaders}
-        rowData={listData}
+        rowData={data}
         filterPaginationData={{
-          totalCount: 100,
-          totalPages: 5,
+          totalCount: totalData,
+          totalPages,
         }}
+        isTableLoading={isLoading}
       />
     </>
   );

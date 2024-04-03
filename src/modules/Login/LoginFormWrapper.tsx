@@ -48,6 +48,8 @@ const LoginFormWrapper = () => {
     localStorage.setItem(refreshTokenKeyName, res?.refreshToken);
     localStorage.setItem("isLogin", "true");
     localStorage.setItem("deviceId", res?.deviceId);
+    // Remove these lines when we add user access
+    localStorage.setItem("userData", JSON.stringify(userData));
 
     navigate(returnUrl ? `/${returnUrl}` : "/");
   };
@@ -78,7 +80,7 @@ const LoginFormWrapper = () => {
         showToast("error", res?.error?.data?.message);
       } else {
         if (res?.data?.status) {
-          navigate("/dashboard")
+          navigate("/dashboard");
           afterLogin(res?.data?.data);
           showToast("success", res?.data?.message);
         } else {
