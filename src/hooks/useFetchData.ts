@@ -7,7 +7,15 @@ type OtherProp = {
   dataType?: "LIST" | "VIEW";
 };
 
-export const useFetchData = (query: any, otherProps?: OtherProp) => {
+export const useFetchData: (
+  query: any,
+  otherProps?: OtherProp
+) => {
+  data: any;
+  totalPages: number;
+  totalData: number;
+  isLoading: boolean;
+} = (query, otherProps) => {
   const {
     body,
     options,

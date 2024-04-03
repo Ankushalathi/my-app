@@ -22,6 +22,18 @@ export const authApi = apiSlice.injectEndpoints({
       },
     }),
 
+    getUser: builder.query({
+      query: () => {
+        return {
+          url: `/trainer/${localStorage.getItem("userId")}`,
+          method: "GET",
+        };
+      },
+      // transformResponse: (response: any) => {
+      //   return { ...response, data: { ...response?.data, deviceId } };
+      // },
+    }),
+
     // Get Access Token
     getAccessToken: builder.mutation({
       query: (body) => {
@@ -56,4 +68,5 @@ export const {
   useLoginMutation,
   useGetAccessTokenMutation,
   useChangePasswordMutation,
+  useGetUserQuery,
 } = authApi;

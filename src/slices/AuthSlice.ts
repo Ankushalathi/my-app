@@ -18,7 +18,9 @@ const initialState: AuthSLiceStateType = {
   accessToken: localStorage.getItem(authTokenKeyName) || null,
   refreshToken: localStorage.getItem(refreshTokenKeyName) || null,
   returnUrl: null,
-  userData: null,
+  userData: localStorage.getItem("userData")
+    ? JSON.parse(localStorage.getItem("userData") || "{}")
+    : null,
   isLogin: Boolean(localStorage.getItem("isLogin")) || false,
   permissions: [],
 };

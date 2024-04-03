@@ -13,12 +13,14 @@ type Props = {
     totalCount: number;
     totalPages: number;
   };
+  isTableLoading: boolean;
 };
 
 const BatchListing = ({
   tableHeaders,
   rowData,
   filterPaginationData: { totalCount, totalPages },
+  isTableLoading = true,
 }: Props) => {
   return (
     <>
@@ -33,6 +35,7 @@ const BatchListing = ({
               tableHeaders={tableHeaders}
               data={rowData}
               getKey={(item) => item?._id}
+              isLoading={isTableLoading}
             />
           </div>
 
