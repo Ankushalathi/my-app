@@ -9,6 +9,6 @@ export type BatchResources = {
 export type BatchResourcesFormValues = {
 resourceType: any;
 title: string;
-imageUrl: any;
+imageUrl: string;
 dataDescription: string;
 };

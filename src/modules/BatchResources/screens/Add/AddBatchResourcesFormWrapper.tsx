@@ -16,7 +16,7 @@ const AddBatchResourcesFormWrapper = ({ onClose }: Props) => {
   const initialValues: BatchResourcesFormValues = {
     resourceType: [],
     title: "",
-    imageUrl: [],
+    imageUrl: "",
     dataDescription: ""
   };
 
@@ -28,12 +28,12 @@ const AddBatchResourcesFormWrapper = ({ onClose }: Props) => {
     values: BatchResourcesFormValues,
     { resetForm, setSubmitting }: FormikHelpers<BatchResourcesFormValues>
   ) => {
-    const formattedValues ={
-      title: values?.title ,
+    const formattedValues = {
+      title: values?.title,
       description: values?.dataDescription,
-      imageUrl:values?.imageUrl,
-      type: values?.resourceType?.value ,
-  }
+      imageUrl: values?.imageUrl,
+      type: values?.resourceType?.value,
+    }
 
     addResource(formattedValues).then((res: any) => {
       if (res?.error) {
@@ -41,8 +41,8 @@ const AddBatchResourcesFormWrapper = ({ onClose }: Props) => {
       } else {
         if (res?.data?.status) {
           showToast("success", res?.data?.message);
-            resetForm();
-            onClose();
+          resetForm();
+          onClose();
         } else {
           showToast("error", res?.data?.message);
         }

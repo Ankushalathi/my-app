@@ -6,11 +6,13 @@ import ATMTextField from "../../../components/atoms/FormElements/ATMTextField/AT
 import { BatchResourcesFormValues } from "../models/BatchResources.model";
 import ATMFileUploader from "../../../components/atoms/FormElements/ATMFileUploader/ATMFileUploader";
 import MOLFormDialog from "../../../components/molecules/MOLFormDialog/MOLFormDialog";
+import ATMCircularProgress from "../../../components/atoms/ATMCircularProgress/ATMCircularProgress";
 
 type Props = {
   formikProps: FormikProps<BatchResourcesFormValues>;
   onClose: () => void;
   formType: "ADD" | "UPDATE";
+  isLoading?: boolean;
 };
 
 const resourceTypeData = [
@@ -24,9 +26,8 @@ const resourceTypeData = [
   },
 ];
 
-const BatchResourceFormLayout = ({ formikProps, onClose, formType }: Props) => {
+const BatchResourceFormLayout = ({ formikProps, onClose, formType ,isLoading=false}: Props) => {
   const { values, setFieldValue, isSubmitting, handleBlur } = formikProps;
-  console.log(values)
 
   return (
     <MOLFormDialog
@@ -34,7 +35,10 @@ const BatchResourceFormLayout = ({ formikProps, onClose, formType }: Props) => {
       onClose={onClose}
       isSubmitting={isSubmitting}
     >
-      <div className="flex flex-col gap-4">
+      {
+        isLoading ? <div className="flex justify-center items-center max-w-[500px] h-[300px]">
+        <ATMCircularProgress />
+      </div>:(<div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <div className="text-xl font-medium">
             {formType === "ADD" ? "Add Resource" : "Update Resource"}{" "}
@@ -44,8 +48,9 @@ const BatchResourceFormLayout = ({ formikProps, onClose, formType }: Props) => {
           {/* Resource Type */}
           <div className="">
             <ATMSelect
+              valueAccessKey="value"
               name="resourceType"
-              value={values.resourceType}
+              value={values?.resourceType}
               onChange={(newValue) => setFieldValue("resourceType", newValue)}
               onBlur={handleBlur}
               label="Resource Type"
@@ -69,7 +74,7 @@ const BatchResourceFormLayout = ({ formikProps, onClose, formType }: Props) => {
             <div className="mt-4">
               <ATMFileUploader
                 value={values?.imageUrl}
-                accept="hello"
+
                 onChange={(imgUrl: any) => {
                   setFieldValue("imageUrl", imgUrl);
                 }}
@@ -90,8 +95,11 @@ const BatchResourceFormLayout = ({ formikProps, onClose, formType }: Props) => {
             />
           )}
         </div>
-     
-      </div>
+
+      </div>)
+      }
+
+      
     </MOLFormDialog>
   );
 };

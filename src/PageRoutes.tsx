@@ -2,7 +2,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import SideNavLayout from "./components/layouts/SideNavLayout/SideNavLayout";
 import LoginFormWrapper from "./modules/Login/LoginFormWrapper";
-import AuthWrapper from "./components/AuthWrapper/AuthWrapper";
 import BathcListingWrapper from "./modules/Batch/screens/List/BatchListingWrapper";
 import AttendanceListingWrapper from "./modules/Attendance/screens/List/AttendanceListingWrapper";
 import BatchAssignmentListingWrapper from "./modules/BatchAssignment/screens/List/BatchAssignmentListingWrapper";

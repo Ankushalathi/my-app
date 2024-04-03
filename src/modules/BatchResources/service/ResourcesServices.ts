@@ -18,7 +18,7 @@ export const resourceApi = apiSlice.injectEndpoints({
             providesTags: ["resource"],
             query: (body) => {
                 return {
-                    url: "/account/",
+                    url: "/trainer/resources",
                     method: "POST",
                     body,
                 };
@@ -26,11 +26,11 @@ export const resourceApi = apiSlice.injectEndpoints({
         }),
 
         // EDIT
-        editResource: builder.mutation({
+        EditResource: builder.mutation({
             invalidatesTags: ["resource"],
-            query: ({ body, EditId }: any) => {
+            query: ({ body, ResourceEditId }: any) => {
                 return {
-                    url: `/account/${EditId}`,
+                    url: `/resource/${ResourceEditId}/trainer`,
                     method: "PUT",
                     body,
                 };
@@ -40,9 +40,9 @@ export const resourceApi = apiSlice.injectEndpoints({
         //Single View
         getResourceById: builder.query({
             providesTags: ["resource"],
-            query: (EditId: any) => {
+            query: (ResourceEditId: any) => {
                 return {
-                    url: `/account/${EditId}`,
+                    url: `/resource/${ResourceEditId}/trainer`,
                     method: "GET",
                 };
             },
