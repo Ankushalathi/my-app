@@ -53,7 +53,6 @@ const tableHeaders: TableHeader<BatchResources>[] = [
 const BatchResourcesListingWrapper = (props: Props) => {
 
   const [ResourceEditId, setResourceEditId] = useState("")
-
   const { isOpenAddDialog } = useSelector((state: RootState) => state?.batchresources);
   const [deleteResource] = useDeleteResourcesMutation();
   const { searchQuery, page, limit } = useFilterPagination();
@@ -68,11 +67,8 @@ const BatchResourcesListingWrapper = (props: Props) => {
       },
     }
   );
-
   const [isOpenEditForm, setIsOpenEditForm] = useState(false)
-
   const dispatch = useDispatch<AppDispatch>();
-
   const getActionOptions = (resouresId: string) => {
     return [
       {
@@ -84,9 +80,7 @@ const BatchResourcesListingWrapper = (props: Props) => {
         onClick: () => {
           setIsOpenEditForm(true);
           setResourceEditId(resouresId)
-
         },
-
       },
       {
         label: (
@@ -102,7 +96,7 @@ const BatchResourcesListingWrapper = (props: Props) => {
             showCancelButton: true,
             next: (result) => {
               if (result?.isConfirmed) {
-                deleteResource({ resouresId }).then((res: any) => {
+                deleteResource(resouresId).then((res: any) => {
                   if (res?.error) {
                     showToast("error", res?.error?.data?.message);
                   } else {
@@ -116,7 +110,6 @@ const BatchResourcesListingWrapper = (props: Props) => {
               }
             },
           });
-
         },
       },
     ];
@@ -145,7 +138,7 @@ const BatchResourcesListingWrapper = (props: Props) => {
         <EditBatchResourcesFormWrapper
           onClose={() => (setIsOpenEditForm(false))}
           ResourceEditId={ResourceEditId}
-          
+
         />
       )}
     </>

@@ -7,7 +7,7 @@ export const resourceApi = apiSlice.injectEndpoints({
             invalidatesTags: ["resource"],
             query: (body: any) => {
                 return {
-                    url: "trainer/add-resource",
+                    url: "resource/add/trainer",
                     method: "POST",
                     body,
                 };
@@ -51,9 +51,9 @@ export const resourceApi = apiSlice.injectEndpoints({
         // DELETE
         deleteResources: builder.mutation({
             invalidatesTags: ["resource"],
-            query: ({ resouresId }) => {
+            query: (resouresId) => {
                 return {
-                    url: `/resource/${resouresId}`,
+                    url: `/resource/${resouresId}/trainer`,
                     method: "DELETE",
                 };
             },
