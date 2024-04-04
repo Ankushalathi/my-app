@@ -1,56 +1,21 @@
 
 import React, { useState } from "react";
-import BatchResourcesListing from "./BatchResourcesListing";
-import { BatchResources } from "../../models/BatchResources.model";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsOpenAddDialog } from "../../slice/BatchResourcesSlice";
 import AddBatchResourcesFormWrapper from "../Add/AddBatchResourcesFormWrapper";
 import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable";
 import { AppDispatch, RootState } from "../../../../store";
+import { useDeleteResourcesMutation, useGetAllResourcesQuery } from "../../service/ResourcesServices";
+import { showToast } from "../../../../utils/showToaster";
+import BatchResourcesListing from "./BatchResourcesListing";
+import { BatchResources } from "../../models/BatchResources.model";
+import { setIsOpenAddDialog } from "../../slice/BatchResourcesSlice";
 import EditBatchResourcesFormWrapper from "../Edit/EditBatchResourcesFormWrapper";
 import { showConfirmationDialog } from "../../utils/showConfirmationDialog ";
-import { useDeleteResourcesMutation } from "../../service/ResourcesServices";
-import { showToast } from "../../../../utils/showToaster";
+import { useFetchData } from "../../../../hooks/useFetchData";
+import { useFilterPagination } from "../../../../hooks/useFilterPagination";
 
-type Props = {};
-
-const listData: BatchResources[] = [
-  {
-    name: "Vishal",
-    age: 26,
-    email: "samyak@gmail.com",
-    amount: 20000,
-    _id: "1",
-  },
-  {
-    name: "Vikas",
-    age: 24,
-    email: "vikas",
-    amount: 5000000000,
-    _id: "2",
-  },
-  {
-    name: "Samyak",
-    age: 22,
-    email: "samyak",
-    amount: 10000,
-    _id: "3",
-  },
-  {
-    name: "Jaya",
-    age: 22,
-    email: "samyak",
-    amount: 8000,
-    _id: "4",
-  },
-  {
-    name: "Siya",
-    age: 22,
-    email: "samyak",
-    amount: 18000,
-    _id: "5",
-  },
-];
+type Props = {
+};
 
 const tableHeaders: TableHeader<BatchResources>[] = [
   {
@@ -86,8 +51,23 @@ const tableHeaders: TableHeader<BatchResources>[] = [
 ];
 
 const BatchResourcesListingWrapper = (props: Props) => {
+
+  const [ResourceEditId, setResourceEditId] = useState("")
+
   const { isOpenAddDialog } = useSelector((state: RootState) => state?.batchresources);
   const [deleteResource] = useDeleteResourcesMutation();
+  const { searchQuery, page, limit } = useFilterPagination();
+  const { data, totalData, totalPages } = useFetchData(
+    useGetAllResourcesQuery,
+    {
+      body: {
+        limit: limit,
+        searchValue: searchQuery,
+        page: page,
+        isPaginationRequired: true
+      },
+    }
+  );
 
   const [isOpenEditForm, setIsOpenEditForm] = useState(false)
 
@@ -103,6 +83,8 @@ const BatchResourcesListingWrapper = (props: Props) => {
         ),
         onClick: () => {
           setIsOpenEditForm(true);
+          setResourceEditId(resouresId)
+
         },
 
       },
@@ -134,8 +116,8 @@ const BatchResourcesListingWrapper = (props: Props) => {
               }
             },
           });
-        },
 
+        },
       },
     ];
   };
@@ -145,23 +127,25 @@ const BatchResourcesListingWrapper = (props: Props) => {
       <BatchResourcesListing
         tableHeaders={tableHeaders}
         getActionOptions={getActionOptions}
-        rowData={listData}
+        rowData={data as any[]}
         onAddNew={() => dispatch(setIsOpenAddDialog(true))}
         filterPaginationData={{
-          totalCount: 100,
-          totalPages: 5,
+          totalCount: totalData,
+          totalPages: totalPages,
         }}
       />
 
       {isOpenAddDialog && (
         <AddBatchResourcesFormWrapper
           onClose={() => dispatch(setIsOpenAddDialog(false))}
+
         />
       )}
       {isOpenEditForm && (
         <EditBatchResourcesFormWrapper
           onClose={() => (setIsOpenEditForm(false))}
-          categoryId=""
+          ResourceEditId={ResourceEditId}
+          
         />
       )}
     </>

@@ -6,7 +6,7 @@ import MOLFilterBar from "../../../../components/molecules/MOLFilterBar/MOLFilte
 import ATMPagination from "../../../../components/atoms/ATMPagination/ATMPagination";
 import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable";
 import ATMMenu from "../../../../components/atoms/ATMMenu/ATMMenu";
-import { useState } from "react";
+// import { useState } from "react";
 
 type Props = {
   onAddNew: () => void;
@@ -18,14 +18,6 @@ type Props = {
     totalPages: number;
   };
 };
-
-const dummayData = [{
-  _id: '1',
-  type: 'IMAGE',
-  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGNuADZ16Qoi7ULtwHLJ1t1apXAsDa5krU5YFXkv-MfA&s',
-  title: 'Image Data'
-}]
-
 const BatchResourcesListing = ({
   onAddNew,
   tableHeaders,
@@ -33,7 +25,7 @@ const BatchResourcesListing = ({
   rowData,
   filterPaginationData: { totalCount, totalPages },
 }: Props) => {
-  const [isCopied, setIsCopied] = useState(false)
+  // const [isCopied, setIsCopied] = useState(false)
   return (
     <>
       <div className="flex flex-col h-full gap-2">
@@ -49,9 +41,9 @@ const BatchResourcesListing = ({
           {/* Table Toolbar */}
           <MOLFilterBar />
 
-          <div className="grid grid-cols-6 m-2 ">
+          <div className="grid grid-cols-6 gap-3 m-2 ">
             {
-              dummayData?.map((el: any, ind: any) => {
+              rowData?.map((el: any, ind: any) => {
                 const options = getActionOptions(el?._id);
                 return (
                   <div className="px-2 border-2 rounded border-slate-200">
@@ -70,7 +62,7 @@ const BatchResourcesListing = ({
                                   >
                                     copy
                                   </ATMCopyToClipboard> */}
-                          <ATMMenu items={options} children={<div><IconDotsVertical className="p-0" /></div>} />
+                          <ATMMenu items={options} children={<div><IconDotsVertical /></div>} />
                         </div>
                         {" "}
                         <img
@@ -108,6 +100,7 @@ const BatchResourcesListing = ({
                                   </ATMCopyToClipboard>
                                   <ATMMenu   items={options} children={<div>Menu</div> } />
                                  </div> */}
+                          <ATMMenu items={options} children={<div><IconDotsVertical className="p-0" /></div>} />
                         </div>{" "}
                       </div>
                     )}
