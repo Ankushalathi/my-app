@@ -36,7 +36,7 @@ const ATMPagination: React.FC<ATMPaginationPropTypes> = ({
       <div className="text-xs text-slate-700">
         <p>
           {rowsPerPage * (currentPage - 1) + 1}-
-          {rowsPerPage * (currentPage - 1) + rows.length} of {rowCount}
+          {rowsPerPage * (currentPage - 1) + rows?.length} of {rowCount}
         </p>
       </div>
       <div className="flex items-center gap-2 text-slate-700 ">

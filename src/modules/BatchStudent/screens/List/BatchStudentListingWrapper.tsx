@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BatchStudentListing from "./BatchStudentListing";
 import { BatchStudent } from "../../models/BatchStudent.model";
 import { setIsOpenAddDialog } from "../../slice/BatchStudentSlice";
@@ -7,47 +7,11 @@ import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable"
 import { AppDispatch, RootState } from "../../../../store";
 import { formatedDateTimeIntoIst } from "../../../../utils/dateTimeFormat";
 import { useSelector, useDispatch } from "react-redux";
+import { useGetAllStudentsQuery } from "../../service/StudentServices";
+import { useParams } from "react-router-dom";
+import { useFilterPagination } from "../../../../hooks/useFilterPagination";
 
 type Props = {};
-
-const listData: BatchStudent[] = [
-  {
-    dateTime: "01 Apr 2024",
-    name: "Himanshu jain",
-    mobileNumber: 888964793,
-    email: "Himanshu@gmail.com",
-    _id: "1",
-  },
-  {
-    dateTime: "10 Apr 2024",
-    name: "Anuj Joshi",
-    mobileNumber: 828964793,
-    email: "Anuj@gmail.com",
-    _id: "1",
-  },
-  {
-    dateTime: "21 Apr 2024",
-    name: "Goutam Sharma",
-    mobileNumber: 818964793,
-    email: "Goutam@gmail.com",
-    _id: "1",
-  },
-  {
-    dateTime: "25 Apr 2024",
-    name: "Gourav Sharma",
-    mobileNumber: 858964793,
-    email: "Gourav@gmail.com",
-    _id: "1",
-  },
-  {
-    dateTime: "30 Apr 2024",
-    name: "Deepak Sisodiya",
-    mobileNumber: 888964793,
-    email: "Deepak@gmail.com",
-    _id: "1",
-  },
-];
-
 const tableHeaders: TableHeader<BatchStudent>[] = [
   {
     fieldName: "dateTime",
@@ -71,7 +35,7 @@ const tableHeaders: TableHeader<BatchStudent>[] = [
     flex: "flex-[1_0_0%]",
   },
   {
-    fieldName: "mobileNumber",
+    fieldName: "mobile",
     headerName: "Mobile Number",
     flex: "flex-[1_0_0%]",
   },
@@ -84,20 +48,46 @@ const tableHeaders: TableHeader<BatchStudent>[] = [
 ];
 
 const BatchStudentListingWrapper = (props: Props) => {
+  const { batchId } = useParams()
   const { isOpenAddDialog } = useSelector(
     (state: RootState) => state?.batchstudent
   );
   const dispatch = useDispatch<AppDispatch>();
+  const { searchQuery, page, limit } = useFilterPagination()
+  const [studentData, setStudentData] = useState<any>()
+  const { data, isLoading, isFetching } = useGetAllStudentsQuery({
+    body: {
+      searchValue: searchQuery,
+      limit: limit,
+      params: [
+        "name"
+      ],
+      page: page, 
+      filterBy: [],
+      dateFilter: {},
+      orderBy: "createdAt",
+      orderByValue: -1,
+      isPaginationRequired: true
+    },
+    Id: batchId
+  })
+
+  useEffect(() => {
+    if (!isLoading && !isFetching) {
+      setStudentData(data?.data)
+    }
+  }, [data, isLoading, isFetching])
 
   return (
     <>
       <BatchStudentListing
         tableHeaders={tableHeaders}
-        rowData={listData}
+        rowData={studentData}
         filterPaginationData={{
-          totalCount: 100,
-          totalPages: 5,
+          totalCount: 10,
+          totalPages: 10,
         }}
+        isTableLoading={isLoading}
       />
 
       {isOpenAddDialog && (
