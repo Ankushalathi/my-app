@@ -14,6 +14,8 @@ type Props = {
 const AuthWrapper = ({ children }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLogin } = useSelector((state: RootState) => state?.auth);
+
+  console.log(isLogin , "Login");
   const { pathname } = useLocation();
   const [isChecking, setIsChecking] = useState(true);
 
