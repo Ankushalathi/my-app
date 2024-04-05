@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BatchAssignmentListing from "./BatchAssignmentListing";
 import { BatchAssignment } from "../../models/BatchAssignment.model";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,80 +9,33 @@ import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable"
 import { useParams } from "react-router-dom";
 import { useFilterPagination } from "../../../../hooks/useFilterPagination";
 import { useGetAllAssignmentQuery } from "../Services/AssignmentServices";
+import CustomDialog from "../Dialog/CustomDialog ";
 
 type Props = {};
 
-// TODO
-// const listData: BatchAssignment[] = [
-//   {
-//     name: "Vishal",
-//     age: 26,
-//     email: "samyak@gmail.com",
-//     amount: 20000,
-//     _id: "1",
-//   },
-//   {
-//     name: "Vikas",
-//     age: 24,
-//     email: "vikas",
-//     amount: 5000,
-//     _id: "2",
-//   },
-//   {
-//     name: "Samyak",
-//     age: 22,
-//     email: "samyak",
-//     amount: 10000,
-//     _id: "3",
-//   },
-//   {
-//     name: "Jaya",
-//     age: 22,
-//     email: "samyak",
-//     amount: 8000,
-//     _id: "4",
-//   },
-//   {
-//     name: "Siya",
-//     age: 22,
-//     email: "samyak",
-//     amount: 18000,
-//     _id: "5",
-//   },
-// ];
-
 const tableHeaders: TableHeader<BatchAssignment>[] = [
   {
-    fieldName: "name",
-    headerName: "Name",
+    fieldName: "questionTitle",
+    headerName: "questionTitle",
     highlight: true,
     flex: "flex-[1_1_0%]",
     stopPropagation: true,
   },
   {
-    fieldName: "age",
-    headerName: "Age",
+    fieldName: "complexity",
+    headerName: "complexity",
     flex: "flex-[1_0_0%]",
-  },
-  {
-    fieldName: "amount",
-    headerName: "Fees",
-    flex: "flex-[1_0_0%]",
-  },
-  {
-    fieldName: "email",
-    headerName: "Email",
-    extraClasses: () => "min-w-[100px]",
-    flex: "flex-[1_0_0%]",
-  },
+  }
 ];
 
 const BatchAssignmentListingWrapper = (props: Props) => {
   const { isOpenAddDialog } = useSelector((state: RootState) => state?.batchassignment);
   const dispatch = useDispatch<AppDispatch>();
+  const [assignmentData, setAssignmentData] = useState<any>()
+  const [isDialogOpen, setsDialogOpen] = useState(false)
   const { batchId } = useParams()
   const { searchQuery, page, limit } = useFilterPagination()
-  const { data: assignment } = useGetAllAssignmentQuery({
+  const { data, isLoading, isFetching } = useGetAllAssignmentQuery({
     body: {
       searchValue: searchQuery,
       params: [
@@ -111,27 +63,41 @@ const BatchAssignmentListingWrapper = (props: Props) => {
     },
     Id: batchId
   })
+  useEffect(() => {
+    if (!isLoading && !isFetching) {
+      setAssignmentData(data?.data)
+    }
+  }, [data, isLoading, isFetching])
 
   return (
     <>
       <BatchAssignmentListing
         tableHeaders={tableHeaders}
-        rowData={assignment}
+        rowData={assignmentData}
         onAddNew={() => dispatch(setIsOpenAddDialog(true))}
         filterPaginationData={{
           totalCount: 100,
           totalPages: 5,
         }}
+        onRowClick={() => setsDialogOpen(true)}
       />
 
       {isOpenAddDialog && (
         <AddBatchAssignmentFormWrapper
           onClose={() => dispatch(setIsOpenAddDialog(false))}
+          batchData={assignmentData}
         />
       )}
+      {
+
+        isDialogOpen &&(
+          <CustomDialog
+          onClose={()=>setsDialogOpen(false)}
+          />
+        )
+      }
     </>
   );
 };
 
 export default BatchAssignmentListingWrapper;
-

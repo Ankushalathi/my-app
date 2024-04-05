@@ -14,6 +14,7 @@ type Props = {
     totalCount: number;
     totalPages: number;
   };
+  onRowClick: (row: BatchAssignment) => void;
 };
 
 const BatchAssignmentListing = ({
@@ -21,6 +22,7 @@ const BatchAssignmentListing = ({
   tableHeaders,
   rowData,
   filterPaginationData: { totalCount, totalPages },
+  onRowClick,
 }: Props) => {
   return (
     <>
@@ -41,9 +43,10 @@ const BatchAssignmentListing = ({
             <MOLTable<BatchAssignment>
               tableHeaders={tableHeaders}
               data={rowData}
+              onRowClick={onRowClick}
               getKey={(item) => item?._id}
-              onEdit={(item) => alert(item?.name)}
-              onDelete={(item) => alert(item?.name)}
+              onEdit={(item) => alert(item?.questionTitle)}
+              onDelete={(item) => alert(item?.questionTitle)}
             />
           </div>
 

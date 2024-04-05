@@ -1,4 +1,4 @@
 export type SliceStateType = {
-    isOpenAddDialog: boolean;
-    isOpenEditDialog: boolean;
+  isOpenAddDialog:boolean ;
+  isOpenEditDialog:boolean;
   };
