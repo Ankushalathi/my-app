@@ -44,7 +44,6 @@ const EditBatchResourcesFormWrapper = ({ onClose, ResourceEditId }: Props) => {
       imageUrl: values?.imageUrl,
       description: values?.dataDescription
     };
-    console.log(formattedValues)
     EditResource({ body: formattedValues, ResourceEditId }).then((res: any) => {
       if (res?.error) {
         showToast("error", res?.error?.data?.message);
