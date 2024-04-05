@@ -18,7 +18,10 @@ const LoginForm = ({ formikProps }: Props) => {
           <div className="flex flex-col gap-6  md:w-[500px] w-full h-fit">
             <div className="flex flex-col gap-2">
               <i className="font-medium">Welcome!</i>
-              <div className="text-xl font-bold"> Login in Sachcha Bhaav </div>
+              <div className="text-xl font-bold">
+                {" "}
+                Login in Teacher's Panel{" "}
+              </div>
             </div>
 
             <div className="flex flex-col gap-4">
@@ -63,19 +66,9 @@ const LoginForm = ({ formikProps }: Props) => {
 
       <div className="w-full h-1/2 md:h-full lg:w-1/2 lg:block ">
         <div className="flex flex-col items-center justify-center gap-4 p-4 text-center rounded-lg md:items-start md:text-start md:justify-between login-img">
-          <p className="text-4xl text-white md:text-2xl">Sachcha Bhaav</p>
+          <p className="text-4xl text-white md:text-2xl">Geeksdoor</p>
           <div className="flex flex-col gap-1">
-            <p className="text-xl text-white md:text-4xl">
-              {" "}
-              Centralized Business Management Hub
-            </p>
-            <p className="text-sm text-neutral-80 md:text-xl">
-              {" "}
-              Streamline all your operations, from finances to customer
-              interactions, in one convenient platform Simplify your worklflow,
-              increase efficiency, and stay organized with our comprehensive
-              solution.
-            </p>
+            <p className="text-xl text-white md:text-4xl"> Teacher's Panel</p>
           </div>
         </div>
       </div>
