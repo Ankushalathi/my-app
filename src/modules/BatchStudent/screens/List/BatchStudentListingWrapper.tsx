@@ -14,17 +14,17 @@ import { useFilterPagination } from "../../../../hooks/useFilterPagination";
 type Props = {};
 const tableHeaders: TableHeader<BatchStudent>[] = [
   {
-    fieldName: "dateTime",
+    fieldName: "createdAt",
     headerName: "Date-Time",
     highlight: true,
     flex: "flex-[1_1_0%]",
     renderCell: (row) => (
       <div>
         <div className="font-medium text-slate-700">
-          {formatedDateTimeIntoIst(row.dateTime, "DD MMM yyyy")}
+          {formatedDateTimeIntoIst(row.createdAt, "DD MMM yyyy")}
         </div>
         <div className="text-[13px] font-medium text-slate-400">
-          {formatedDateTimeIntoIst(row.dateTime, "hh:mm A")}
+          {formatedDateTimeIntoIst(row.createdAt, "hh:mm A")}
         </div>
       </div>
     ),

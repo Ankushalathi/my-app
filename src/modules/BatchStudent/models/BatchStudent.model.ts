@@ -1,5 +1,5 @@
 export type BatchStudent = {
-  dateTime: string;
+  createdAt: string;
   name: string;
   mobile: number;
   email: string;
