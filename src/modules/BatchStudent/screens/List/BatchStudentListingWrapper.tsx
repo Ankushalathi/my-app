@@ -71,7 +71,6 @@ const BatchStudentListingWrapper = (props: Props) => {
     },
     Id: batchId
   })
-
   useEffect(() => {
     if (!isLoading && !isFetching) {
       setStudentData(data?.data)

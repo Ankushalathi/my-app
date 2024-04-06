@@ -45,8 +45,6 @@ const BatchAssignmentListing = ({
               data={rowData}
               onRowClick={onRowClick}
               getKey={(item) => item?._id}
-              onEdit={(item) => alert(item?.questionTitle)}
-              onDelete={(item) => alert(item?.questionTitle)}
             />
           </div>
 

@@ -36,8 +36,6 @@ const BatchStudentListing = ({
               tableHeaders={tableHeaders}
               data={rowData}
               getKey={(item) => item?._id}
-              onEdit={(item) => alert(item?.name)}
-              onDelete={(item) => alert(item?.name)}
               isLoading={isTableLoading}
             />
           </div>

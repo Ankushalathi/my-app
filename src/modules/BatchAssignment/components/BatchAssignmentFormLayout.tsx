@@ -64,31 +64,31 @@ const BatchAssignmentFormLayout = ({
 
 
   const { data, isLoading, isFetching } = useGetAllQuestionsQuery(
-    {
-      limit: 10,
-      searchValue: values?.searchValue || "",
-      params: ["question"],
-      page: dialogPage,
-      filterBy: [
-        {
-          fieldName: "tagId._id",
-          value: values?.tagId?.value ? [values?.tagId?.value] : [],
-        },
+   { body: {
+    limit: 10,
+    searchValue: values?.searchValue || "",
+    params: ["question"],
+    page: dialogPage,
+    filterBy: [
+      {
+        fieldName: "tagId._id",
+        value: values?.tagId?.value ? [values?.tagId?.value] : [],
+      },
 
-        {
-          fieldName: "complexity",
-          value: values?.complexity?.value ? [values?.complexity?.value] : [],
-        },
-        {
-          fieldName: "order",
-          value: values?.order ? [Number(values?.order)] : [],
-        },
-      ],
-      dateFilter: {},
-      orderBy: "createdAt",
-      orderByValue: -1,
-      isPaginationRequired: true,
-    }
+      {
+        fieldName: "complexity",
+        value: values?.complexity?.value ? [values?.complexity?.value] : [],
+      },
+      {
+        fieldName: "order",
+        value: values?.order ? [Number(values?.order)] : [],
+      },
+    ],
+    dateFilter: {},
+    orderBy: "createdAt",
+    orderByValue: -1,
+    isPaginationRequired: true,
+  }}
   );
 
   //Tags Data
@@ -122,6 +122,7 @@ const BatchAssignmentFormLayout = ({
   };
   
   const batchDataQuestionIdArray = batchData?.map((el:any)=>el?.questionId)
+  console.log(values.tagId,"values")
   return (
     <>
       <MOLFormDialog
@@ -134,11 +135,11 @@ const BatchAssignmentFormLayout = ({
             <div className="text-xl font-medium">Assignment</div>
             <div className="flex items-center justify-between">
               <div className="text-xl font-medium">
-                {formType === "ADD" ? "Add Resource" : "Update Resource"}{" "}
+                {formType === "ADD" ? "Add Assignment" : "Update Assignment"}{" "}
               </div>
             </div>
           </div>
-          <div className="p-2 shadow-md">
+          <div className="p-5 shadow-md ">
             <div className="flex justify-end">
               <span
                 onClick={() => {
@@ -167,6 +168,7 @@ const BatchAssignmentFormLayout = ({
                   placeholder="Select Tags"
                   options={tagsOptions}
                   isLoading={tagsDataIsLoading || tagsDataIsFetching}
+                  valueAccessKey="value"
                 />
               </div>
 
@@ -180,6 +182,7 @@ const BatchAssignmentFormLayout = ({
                   label="Complexity"
                   placeholder="Select Complexity"
                   options={ComplexityOptions}
+                  valueAccessKey="value"
                 />
               </div>
               {/* Order */}
@@ -216,7 +219,7 @@ const BatchAssignmentFormLayout = ({
             : dialogItems?.length ? (
               <div
                 id="scrollable-activity-div"
-                className="w-[calc(100%-2px)] border h-full overflow-scroll p-3"
+                className="w-[calc(100%-2px)] border h-full overflow-scroll p-3 mt-4"
               >
                 {/* Scroll For Date */}
                 <InfiniteScroll

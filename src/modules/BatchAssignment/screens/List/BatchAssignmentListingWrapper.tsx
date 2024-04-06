@@ -16,10 +16,8 @@ type Props = {};
 const tableHeaders: TableHeader<BatchAssignment>[] = [
   {
     fieldName: "questionTitle",
-    headerName: "questionTitle",
-    highlight: true,
+    headerName: "question Title",
     flex: "flex-[1_1_0%]",
-    stopPropagation: true,
   },
   {
     fieldName: "complexity",
@@ -32,6 +30,7 @@ const BatchAssignmentListingWrapper = (props: Props) => {
   const { isOpenAddDialog } = useSelector((state: RootState) => state?.batchassignment);
   const dispatch = useDispatch<AppDispatch>();
   const [assignmentData, setAssignmentData] = useState<any>()
+  const [solutionData , setSolutionData] = useState<any>()
   const [isDialogOpen, setsDialogOpen] = useState(false)
   const { batchId } = useParams()
   const { searchQuery, page, limit } = useFilterPagination()
@@ -79,7 +78,11 @@ const BatchAssignmentListingWrapper = (props: Props) => {
           totalCount: 100,
           totalPages: 5,
         }}
-        onRowClick={() => setsDialogOpen(true)}
+        onRowClick={(row:any) =>{
+          setSolutionData(row) 
+           setsDialogOpen(true)
+        }
+           }
       />
 
       {isOpenAddDialog && (
@@ -92,6 +95,7 @@ const BatchAssignmentListingWrapper = (props: Props) => {
 
         isDialogOpen &&(
           <CustomDialog
+          solutionData={solutionData}
           onClose={()=>setsDialogOpen(false)}
           />
         )

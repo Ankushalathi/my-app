@@ -68,7 +68,6 @@ const BathcListingWrapper = (props: Props) => {
       },
     }
   );
-
   return (
     <>
       <BatchListing
