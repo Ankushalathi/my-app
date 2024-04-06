@@ -43,18 +43,18 @@ const BatchResourcesListing = ({
           {/* Table Toolbar */}
           <MOLFilterBar />
 
-          <div className="grid grid-cols-6 gap-4 m-2">
+          <div className="grid grid-cols-6 gap-4 p-2">
             {rowData?.map((el: any, ind: any) => {
               const options = getActionOptions(el?._id);
               return (
-                <div key={ind} className="p-1 border-2 rounded border-slate-200">
+                <div key={ind} className="border-2 rounded border-slate-200">
                   {el?.type === "IMAGE" ? (
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[16px] font-semibold">
+                        <span className="text-[16px] font-semibold px-2">
                           {el?.title}
                         </span>
-                        <div className="flex items-center">
+                        <div className="flex items-end">
                           <ATMCopyToClipBoard
                             copyText={el?.imageUrl}
                             onCopy={() => {
@@ -65,14 +65,14 @@ const BatchResourcesListing = ({
                         </div>
                       </div>
                       <img
-                        className="h-[150px] w-[300px]"
+                        className="h-[150px] w-[300px] p-2"
                         src={el?.imageUrl}
                         alt={el?.title}
                       />
                     </div>
                   ) : (
                     <div className="flex items-center justify-between">
-                      <span className="text-[16px] font-semibold">
+                      <span className="text-[16px] font-semibold px-2">
                         {el?.title}
                       </span>
                       <div className="flex items-center">

@@ -11,12 +11,14 @@ type Props = {
     totalCount: number;
     totalPages: number;
   };
+  isTableLoading: boolean
 };
 
 const BatchStudentListing = ({
   tableHeaders,
-  rowData,  
+  rowData,
   filterPaginationData: { totalCount, totalPages },
+  isTableLoading
 }: Props) => {
   return (
     <>
@@ -34,8 +36,7 @@ const BatchStudentListing = ({
               tableHeaders={tableHeaders}
               data={rowData}
               getKey={(item) => item?._id}
-              onEdit={(item) => alert(item?.name)}
-              onDelete={(item) => alert(item?.name)}
+              isLoading={isTableLoading}
             />
           </div>
 

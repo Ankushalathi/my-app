@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IconTarget } from '@tabler/icons-react';
+import { IconBook, IconCalendarMonth, IconUserCog,IconUser } from '@tabler/icons-react';
 import ViewListing from './BatchViewLayout';
 
 type Props = {};
@@ -18,25 +18,25 @@ const BatchViewLayoutWrapper = (props: Props) => {
     const listData = [
         {
             label: "Student",
-            icon: IconTarget,
+            icon: IconUser,
             onClick: () => navigate("student"),
             path: "student"
         },
         {
             label: "Assignment",
-            icon: IconTarget,
+            icon: IconBook,
             onClick: () => navigate("assignment"),
             path: "assignment"
         },
         {
             label: "Attendance",
-            icon: IconTarget,
+            icon: IconCalendarMonth,
             onClick: () => navigate("attendance"),
             path: "attendance"
         },
         {
             label: "Resources",
-            icon: IconTarget,
+            icon: IconUserCog,
             onClick: () => navigate("resources"),
             path: "resources"
         }

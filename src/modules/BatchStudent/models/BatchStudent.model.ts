@@ -1,7 +1,7 @@
 export type BatchStudent = {
-  dateTime: string;
+  createdAt: string;
   name: string;
-  mobileNumber: number;
+  mobile: number;
   email: string;
   _id: string;
 };

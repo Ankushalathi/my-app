@@ -9,6 +9,7 @@ type Props = {
   title: string;
   isSubmitting: boolean;
   size?: Size;
+  hideActionButton?:boolean
 };
 
 const getWidth = (size: Size) => {
@@ -28,6 +29,7 @@ const MOLFormDialog = ({
   title,
   isSubmitting,
   size = "small",
+  hideActionButton = false
 }: Props) => {
   return (
     <ATMDialog>
@@ -45,13 +47,13 @@ const MOLFormDialog = ({
         <div className="flex-1 p-4 ">{children}</div>
 
         {/* Actions */}
-        <div className="sticky bottom-0 flex items-center justify-end gap-2 px-4 py-3 bg-white">
+         <div className="sticky bottom-0 flex items-center justify-end gap-2 px-4 py-3 bg-white">
           <ATMButton onClick={onClose} variant="outlined" color="neutral">
             Cancel
           </ATMButton>
-          <ATMButton type="submit" isLoading={isSubmitting}>
+       {!hideActionButton  && <ATMButton type="submit" isLoading={isSubmitting}>
             Submit
-          </ATMButton>
+          </ATMButton>}   
         </div>
       </div>
     </ATMDialog>

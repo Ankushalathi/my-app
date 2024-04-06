@@ -74,10 +74,7 @@ const BatchResourceFormLayout = ({ formikProps, onClose, formType, isLoading = f
               <div className="mt-4">
                 <ATMFileUploader
                   value={values?.imageUrl}
-
-                  onChange={(imgUrl: any) => {
-                    setFieldValue("imageUrl", imgUrl);
-                  }}
+                  onChange={(imgUrl: any) => { setFieldValue("imageUrl", imgUrl); }}
                   name="imageUrl"
                   label="File"
                 />
