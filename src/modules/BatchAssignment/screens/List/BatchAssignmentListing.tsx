@@ -7,6 +7,7 @@ import MOLFilterBar from "../../../../components/molecules/MOLFilterBar/MOLFilte
 import ATMPagination from "../../../../components/atoms/ATMPagination/ATMPagination";
 
 type Props = {
+  isLoading:boolean ;
   onAddNew: () => void;
   rowData: BatchAssignment[];
   tableHeaders: TableHeader<BatchAssignment>[];
@@ -21,6 +22,7 @@ const BatchAssignmentListing = ({
   onAddNew,
   tableHeaders,
   rowData,
+  isLoading ,
   filterPaginationData: { totalCount, totalPages },
   onRowClick,
 }: Props) => {
@@ -40,7 +42,8 @@ const BatchAssignmentListing = ({
           <MOLFilterBar />
 
           <div className="flex-1 overflow-auto">
-            <MOLTable<BatchAssignment>
+            <MOLTable<BatchAssignment> 
+              isLoading={isLoading}
               tableHeaders={tableHeaders}
               data={rowData}
               onRowClick={onRowClick}

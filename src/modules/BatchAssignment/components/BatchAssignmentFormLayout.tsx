@@ -122,7 +122,6 @@ const BatchAssignmentFormLayout = ({
   };
   
   const batchDataQuestionIdArray = batchData?.map((el:any)=>el?.questionId)
-  console.log(values.tagId,"values")
   return (
     <>
       <MOLFormDialog

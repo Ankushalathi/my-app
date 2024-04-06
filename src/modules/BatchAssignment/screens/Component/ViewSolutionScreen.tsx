@@ -14,7 +14,6 @@ const ViewSolutionScreen = ({ data, editorValue }: Props) => {
         setActiveFile(newFile);
     };
 
- console.log(data ,"data 0001")
     return (
         <div className="p-4 flex flex-col h-[500px]">
             <div className="flex-1 overflow-hidden " >

@@ -12,7 +12,17 @@ export const studentApi = apiSlice.injectEndpoints({
                 };
             },
         }),
+          //Get all Assignments 
+    getNotCompletedAssignmentsStudents: builder.query({
+        query: (body: any) => {
+          return {
+            url: "/admission/incompleted-assignment-count/trainer",
+            method: "POST",
+            body,
+          };
+        },
+      }),
     }),
 });
 
-export const { useGetAllStudentsQuery } = studentApi;
+export const { useGetAllStudentsQuery , useGetNotCompletedAssignmentsStudentsQuery } = studentApi;

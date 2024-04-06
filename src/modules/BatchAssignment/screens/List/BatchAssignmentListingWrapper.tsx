@@ -23,6 +23,16 @@ const tableHeaders: TableHeader<BatchAssignment>[] = [
     fieldName: "complexity",
     headerName: "complexity",
     flex: "flex-[1_0_0%]",
+  },
+  {
+    fieldName: "totalStudentDoneAssignment",
+    headerName: "TOTAL STUDENT DONE",
+    flex: "flex-[1_0_0%]",
+  },
+  {
+    fieldName: "totalStudents",
+    headerName: "TOTAL STUDENTS",
+    flex: "flex-[1_0_0%]",
   }
 ];
 
@@ -70,7 +80,8 @@ const BatchAssignmentListingWrapper = (props: Props) => {
 
   return (
     <>
-      <BatchAssignmentListing
+      <BatchAssignmentListing 
+       isLoading ={isFetching || isLoading }
         tableHeaders={tableHeaders}
         rowData={assignmentData}
         onAddNew={() => dispatch(setIsOpenAddDialog(true))}
