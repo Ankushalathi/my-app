@@ -1,6 +1,8 @@
 export type BatchAssignment = {
   questionTitle: string;
   complexity: string;
+  totalStudentDoneAssignment:string ;
+  totalStudents:string ;
   _id: string;
 };
 

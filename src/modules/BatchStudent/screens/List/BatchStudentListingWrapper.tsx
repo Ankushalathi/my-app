@@ -7,7 +7,7 @@ import { TableHeader } from "../../../../components/molecules/MOLTable/MOLTable"
 import { AppDispatch, RootState } from "../../../../store";
 import { formatedDateTimeIntoIst } from "../../../../utils/dateTimeFormat";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetAllStudentsQuery } from "../../service/StudentServices";
+import { useGetNotCompletedAssignmentsStudentsQuery } from "../../service/StudentServices";
 import { useParams } from "react-router-dom";
 import { useFilterPagination } from "../../../../hooks/useFilterPagination";
 
@@ -45,6 +45,31 @@ const tableHeaders: TableHeader<BatchStudent>[] = [
     extraClasses: () => "min-w-[100px]",
     flex: "flex-[1_0_0%]",
   },
+  {
+    fieldName: "notSubmittedAssignmentsCount",
+    headerName: "Not Submitted Assignments",
+    flex: "flex-[1.5_1.5_0%]",
+    align :'center',
+     renderCell:(row:any)=>{
+      return(
+          <span className='font-medium  text-red-600'>{row?.notSubmittedAssignmentsCount || 0}</span>
+       
+      )
+     }
+  },
+
+  {
+    fieldName: "totalAssignments",
+    headerName: "Total Assignments",
+    flex: "flex-[1.5_1.5_0%]",
+    align :'center',
+     renderCell:(row:any)=>{
+      return(
+        <span className='font-medium'>  {row?.totalAssignments || 0} </span>
+          
+      )
+     }
+  },
 ];
 
 const BatchStudentListingWrapper = (props: Props) => {
@@ -55,21 +80,24 @@ const BatchStudentListingWrapper = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { searchQuery, page, limit } = useFilterPagination()
   const [studentData, setStudentData] = useState<any>()
-  const { data, isLoading, isFetching } = useGetAllStudentsQuery({
-    body: {
-      searchValue: searchQuery,
-      limit: limit,
-      params: [
-        "name"
-      ],
-      page: page, 
-      filterBy: [],
-      dateFilter: {},
-      orderBy: "createdAt",
-      orderByValue: -1,
-      isPaginationRequired: true
-    },
-    Id: batchId
+  const { data, isLoading, isFetching } = useGetNotCompletedAssignmentsStudentsQuery({
+    searchValue: searchQuery,
+    batchId:batchId ,
+    limit: limit,
+    params: [
+      "name",
+      "mobile",
+      "email",
+    ],
+    page: page, 
+    filterBy: [{
+      fieldName : 'batches.batchId',
+      value :batchId
+  }],
+    dateFilter: {},
+    orderBy: "createdAt",
+    orderByValue: -1,
+    isPaginationRequired: true
   })
   useEffect(() => {
     if (!isLoading && !isFetching) {

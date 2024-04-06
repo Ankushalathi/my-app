@@ -56,7 +56,7 @@ const BatchResourcesListingWrapper = (props: Props) => {
   const { isOpenAddDialog } = useSelector((state: RootState) => state?.batchresources);
   const [deleteResource] = useDeleteResourcesMutation();
   const { searchQuery, page, limit } = useFilterPagination();
-  const { data, totalData, totalPages } = useFetchData(
+  const { data, isLoading, totalData, totalPages } = useFetchData(
     useGetAllResourcesQuery,
     {
       body: {
@@ -119,7 +119,8 @@ const BatchResourcesListingWrapper = (props: Props) => {
     <>
       <BatchResourcesListing
         tableHeaders={tableHeaders}
-        getActionOptions={getActionOptions}
+        getActionOptions={getActionOptions} 
+        isLoading ={isLoading}
         rowData={data as any[]}
         onAddNew={() => dispatch(setIsOpenAddDialog(true))}
         filterPaginationData={{

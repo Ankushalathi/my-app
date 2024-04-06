@@ -22,7 +22,6 @@ const AttendanceListingWrapper = (props: Props) => {
 
   const [attendanceDate, setAttendanceDate] = useState<any>(new Date());
 
-  console.log(attendanceDate, "attendanceDateattendanceDate");
 
   const { data, isLoading, totalPages, totalData } = useFetchData(
     useGetAllStudentOfBatchQuery,
@@ -63,9 +62,6 @@ const AttendanceListingWrapper = (props: Props) => {
   );
 
   const [updateAttenDance] = useUpdateAttendanceMutation();
-
-  console.log();
-
   const initialValues: Attendance = {
     studentsData: data?.map((el: any) => {
       return {
