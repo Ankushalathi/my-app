@@ -12,20 +12,20 @@ const BatchViewLayout = ({ tabName }: Props) => {
         <>
             <div className="flex flex-col h-full gap-4">
                 <ATMPageHeader heading="Batch" hideButton />
-                <div className="flex flex-col overflow-auto border rounded border-slate-300">
-                    <ul className="flex gap-5 px-4 text-xs text-gray-600">
+                <div className="flex flex-col overflow-auto font-semibold border rounded border-slate-300" >
+                    <ul className="flex flex-wrap gap-2 px-2 text-xs text-gray-600 md:gap-8 md:px-4 md:text-sm">
                         {tabName?.map((tab, ind) => (
                             <NavLink
                                 to={tab?.path}
                                 className={({ isActive }) =>
                                     isActive ? "border-b-2 border-black" : ""
                                 }
+                                key={ind}
                             >
-                                {" "}
-                                <li className="flex items-center gap-1 p-2" key={ind}>
-                                    {<tab.icon className="size-4" />}
-                                    {tab.label}{" "}
-                                </li>{" "}
+                                <li className="flex items-center gap-2 p-1">
+                                    {<tab.icon className="size-4 md:size-4" />}
+                                    {tab.label}
+                                </li>
                             </NavLink>
                         ))}
                     </ul>
@@ -34,6 +34,7 @@ const BatchViewLayout = ({ tabName }: Props) => {
                     <Outlet />
                 </div>
             </div>
+
         </>
 
     );
