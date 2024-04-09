@@ -8,7 +8,7 @@ import ATMDataNotFoundPage from "../../../../components/atoms/ATMDataNotFoundPag
 
 type Props = {
   formikProps: FormikProps<Attendance>;
-  rowData :any ;
+  rowData: any;
   totalStudents: number;
   filterPaginationData: {
     totalCount: number;
@@ -19,13 +19,13 @@ type Props = {
   onTime: number;
   late: number;
   date: Date | null;
-  setAttendanceDate:any ;
+  setAttendanceDate: any;
 };
 
 const AttendanceListing = ({
   totalStudents,
   formikProps,
-  rowData ,
+  rowData,
   present,
   filterPaginationData: { totalCount, totalPages },
   absent,
@@ -34,119 +34,121 @@ const AttendanceListing = ({
   late,
   setAttendanceDate
 }: Props) => {
-  
+
   const { values, setFieldValue, handleSubmit } = formikProps;
- console.log(values ,"values")
+  console.log(values, "values")
   return (
     <>
-      <div className="flex flex-col h-full gap-4 p-4 border  rounded-sm ">
-        <div className="flex justify-around p-1 border-b  pb-2">
+      <div className="flex flex-col gap-4 p-4 border rounded-sm">
+        <div className="flex flex-wrap items-center justify-around p-1 pb-2 border-b">
+
           <div className="flex flex-col gap-3 text-slate-600">
-            <p className="font-bold">Total Students </p>
-            <p className="text-lg font-bold text-center">{totalStudents ||0}</p>
+            <p className="font-bold">Total Students</p>
+            <p className="text-lg font-bold text-center">{totalStudents || 0}</p>
           </div>
-          <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-green-700">Present </p>
-            <p className="text-lg font-bold text-center text-green-500">
-              {present || 0}
-            </p>
+
+          <div className="flex flex-col gap-3">
+            <p className="font-bold text-green-700">Present</p>
+            <p className="text-lg font-bold text-center text-green-500">{present || 0}</p>
           </div>
-          <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-red-700">Absent </p>
-            <p className="text-lg font-bold text-center text-red-400">
-              {absent || 0}
-            </p>
+
+          <div className="flex flex-col gap-3">
+            <p className="font-bold text-red-700">Absent</p>
+            <p className="text-lg font-bold text-center text-red-400">{absent || 0}</p>
           </div>
-          <div className="flex flex-col gap-3 ">
-            <p className="font-bold text-lime-700">On Time </p>
-            <p className="text-lg font-bold text-center text-lime-500 ">
-              {onTime || 0}
-            </p>
+
+          <div className="flex flex-col gap-3">
+            <p className="font-bold text-lime-700">On Time</p>
+            <p className="text-lg font-bold text-center text-lime-500">{onTime || 0}</p>
           </div>
+
           <div className="flex flex-col gap-3 text-slate-600">
-            <p className="font-bold text-orange-700">Late </p>
+            <p className="font-bold text-orange-700">Late</p>
             <p className="text-lg font-bold text-center text-orange-400">{late || 0}</p>
           </div>
         </div>
-        <div className="flex justify-between w-screen">
-          <ATMDatePicker
-            name="date"
-            label=""
-            onChange={(date)=>{setAttendanceDate(date)}}
-            value={date}
-          />
-          <MOLFilterBar />
-        </div>
-        <div className="flex flex-col p-2 border rounded border-slate-300">
-          <div className="flex flex-col gap-4">
-            {values?.studentsData?.length ? 
-              values?.studentsData?.map((data, ind) => (
-              <div key={data._id} className="flex justify-between  border-b  pb-1">
-                <p className=" capitalize">{data.name}</p>
-                <p>{data.mobileNumber}</p>
 
-                <div className="flex gap-3">
-                  <p
-                    className={`p-1  border rounded-lg cursor-pointer text-[12px] font-semibold ${
-                      data?.isPresent ===  "P"
+        <div className="flex flex-col justify-evenly md:flex-row ">
+          <div className="flex-grow w-full md:flex md:items-center md:mt-3">
+            <ATMDatePicker
+              name="date"
+              label=""
+              onChange={(date) => { setAttendanceDate(date) }}
+              value={date}
+            />
+          </div>
+          <div className="flex-grow w-full mt-3 md:flex md:items-center">
+            <MOLFilterBar />
+          </div>
+
+        </div>
+        <div className="flex flex-col p-2 border rounded md:overflow-y-scroll border-slate-300">
+          <div className="flex flex-col gap-4">
+            {values?.studentsData?.length ?
+              values?.studentsData?.map((data, ind) => (
+                <div key={data._id} className="flex justify-between pb-1 border-b">
+                  <p className="flex items-center justify-center text-[10px] capitalize md:text-base">{data.name}</p>
+                  <p className="flex items-center justify-center text-[10px] md:text-base">{data.mobileNumber}</p>
+                  <div className="flex gap-3">
+                    {/* Present/Absent */}
+                    <p
+                      className={`md:p-1 border flex justify-center items-center rounded-lg cursor-pointer text-xs  md:text-[12px] font-semibold ${data?.isPresent === "P"
                         ? "bg-green-500 text-white"
                         : "bg-gray-50"
-                    } w-[60px] text-center h-[30px]`}
-                    onClick={() =>
-                      setFieldValue(`studentsData[${ind}].isPresent`,  "P")
-                    }
-                  >
-                    Present
-                  </p>{" "}
-                  <p
-                    className={`p-1 border rounded-lg cursor-pointer text-[12px] font-semibold ${
-                      data?.isPresent === "A"
+                        } md:w-[60px] text-center h-[30px]`}
+                      onClick={() =>
+                        setFieldValue(`studentsData[${ind}].isPresent`, "P")
+                      }
+                    >
+                      Present
+                    </p>{" "}
+                    <p
+                      className={`md:p-1 border flex justify-center items-center rounded-lg cursor-pointer text-xs  md:text-[12px] font-semibold ${data?.isPresent === "A"
                         ? "bg-red-500 text-white"
                         : "bg-gray-50"
-                    } w-[60px] text-center h-[30px]`}
-                    onClick={() =>
-                      setFieldValue(`studentsData[${ind}].isPresent`, "A")
-                    }
-                  >
-                    Absent
-                  </p>
-                </div>
-                <div className="flex gap-3">
-                  <div
-                    className={`p-1 border rounded-lg cursor-pointer text-[12px] font-semibold ${
-                      data?.cameOnTime === "YES"
+                        } md:w-[60px] text-center h-[30px]`}
+                      onClick={() =>
+                        setFieldValue(`studentsData[${ind}].isPresent`, "A")
+                      }
+                    >
+                      Absent
+                    </p>
+                  </div>
+                  <div className="flex gap-3">
+                    {/* On Time/Late */}
+                    <div
+                      className={`md:p-1 border flex justify-center items-center rounded-lg cursor-pointer text-xs md:text-[12px] font-semibold  ${data?.cameOnTime === "YES"
                         ? "bg-green-500 text-white"
                         : "bg-gray-50"
-                    } w-[60px] text-center h-[30px]`}
-                    onClick={() =>
-                      setFieldValue(`studentsData[${ind}].cameOnTime`, "YES")
-                    }
-                  >
-                    On Time
-                  </div>{" "}
-                  <p
-                    className={`p-1 border rounded-lg cursor-pointer text-[12px] font-semibold ${
-                      data?.cameOnTime === 'NO'
+                        } md:w-[60px] text-center h-[30px]`}
+                      onClick={() =>
+                        setFieldValue(`studentsData[${ind}].cameOnTime`, "YES")
+                      }
+                    >
+                      On Time
+                    </div>{" "}
+                    <p
+                      className={`md:p-1 border flex justify-center items-center rounded-lg cursor-pointer text-xs md:text-[12px] font-semibold ${data?.cameOnTime === 'NO'
                         ? "bg-red-500 text-white"
                         : "bg-gray-50"
-                    } w-[60px] text-center h-[30px]`}
-                    onClick={() =>
-                      setFieldValue(`studentsData[${ind}].cameOnTime`, 'NO')
-                    }
-                  >
-                    Late
-                  </p>
+                        } md:w-[60px] text-center h-[30px]`}
+                      onClick={() =>
+                        setFieldValue(`studentsData[${ind}].cameOnTime`, 'NO')
+                      }
+                    >
+                      Late
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )) : <div> <ATMDataNotFoundPage message={'NO DATA FOUND'} /></div>}
+              )) : <div> <ATMDataNotFoundPage message={'NO DATA FOUND'} /></div>}
           </div>
         </div>
-          {/* Pagination */}
-          <ATMPagination
-            totalPages={totalPages}
-            rowCount={totalCount}
-            rows={rowData}
-          />
+        {/* Pagination */}
+        <ATMPagination
+          totalPages={totalPages}
+          rowCount={totalCount}
+          rows={rowData}
+        />
         <div className="flex justify-end">
           <ATMButton
             children="Save"
@@ -156,6 +158,7 @@ const AttendanceListing = ({
           />
         </div>
       </div>
+
     </>
   );
 };
