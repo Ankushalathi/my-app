@@ -13,10 +13,10 @@ type Props = {};
 
 const PageRoutes = (props: Props) => {
   const router = createBrowserRouter([
-    {
-      path: "/login",
-      element: <LoginFormWrapper />,
-    },
+    // {
+    //   path: "/login",
+    //   element: <LoginFormWrapper />,
+    // },
     {
       path: "/",
       element: <SideNavLayout />,
@@ -47,7 +47,7 @@ const PageRoutes = (props: Props) => {
             }
           ]
         },
-       
+
       ],
     },
 

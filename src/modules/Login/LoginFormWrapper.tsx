@@ -51,7 +51,7 @@ const LoginFormWrapper = () => {
     // Remove these lines when we add user access
     localStorage.setItem("userData", JSON.stringify(userData));
 
-    navigate(returnUrl ? `/${returnUrl}` : "/");
+    // navigate(returnUrl ? `/${returnUrl}` : "/");
   };
 
   const [login] = useLoginMutation();
@@ -90,9 +90,9 @@ const LoginFormWrapper = () => {
     });
   };
 
-  if (isLogin) {
-    return <Navigate to="/" />;
-  }
+  // if (isLogin) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <>
